@@ -1,0 +1,125 @@
+1.Absract:
+  The Password Generation System is a software application designed to generate strong and secure passwords automatically. 
+  Strong passwords are essential for protecting user accounts from unauthorized access. This system creates random passwords 
+  using a combination of uppercase letters, lowercase letters, numbers, and special characters. The generated passwords are 
+  difficult to guess and improve overall security. The project can be implemented using programming languages
+
+2.Itroduction:
+ the rapid growth of digital systems, securing user accounts has become very important. Weak passwords can be easily hacked 
+ using brute force or dictionary attacks. Therefore, generating strong and random passwords is necessary. The Password Generation 
+System helps users create secure passwords instantly without manual effort
+
+3.Methodology
+ *The system follows these steps:
+ *User enters the desired password length
+ *System selects random characters from:
+ *Uppercase letters
+ *Lowercase letters
+ *Numbers
+ *Special symbols
+ *System combines the characters randomly
+ *System displays the generated password
+
+4.Codings:
+  Password Generator – HTML + JavaScript Code
+   1. HTML File (index.html)
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            width: 350px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Password Generator</h2>
+
+    <input type="number" id="length" placeholder="Enter password length" min="4" max="50">
+
+    <br>
+    <button onclick="generatePassword()">Generate Password</button>
+    <div id="result"></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
+
+javascript:
+function generatePassword() {
+
+    var length = document.getElementById("length").value;
+
+    if (length == "" || length < 4) {
+        alert("Please enter valid password length (min 4)");
+        return;
+    }
+
+    var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var lowercase = "abcdefghijklmnopqrstuvwxyz";
+    var numbers = "0123456789";
+    var symbols = "!@#$%^&*()_+";
+
+    var allChars = uppercase + lowercase + numbers + symbols;
+
+    var password = "";
+
+    for (var i = 0; i < length; i++) {
+        var randomIndex = Math.floor(Math.random() * allChars.length);
+        password += allChars[randomIndex];
+    }
+
+    document.getElementById("result").innerHTML =
+        "Generated Password: " + password;
+}
+
+5. Features
+ *User can enter password length
+ *Generates random password
+ *Uses letters, numbers, symbols
+ *Simple and easy UI
+
+   
