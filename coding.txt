@@ -20,100 +20,38 @@ System helps users create secure passwords instantly without manual effort
  *System combines the characters randomly
  *System displays the generated password
 
-4.Codings:
-  Password Generator – HTML + JavaScript Code
-   1. HTML File (index.html)
-      <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Password Generator</title>
-    <style>
-        body {
-            font-family: Arial;
-            background-color: #f4f4f4;
-            text-align: center;
-            margin-top: 100px;
-        }
+4.coding:
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-        .container {
-            background: white;
-            padding: 20px;
-            width: 350px;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px gray;
-        }
+int main() {
+    int length, i;
+    
+    // Character set: lowercase, uppercase, digits, special characters
+    char charset[] = "abcdefghijklmnopqrstuvwxyz"
+                     "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                     "0123456789"
+                     "!@#$%^&*()-_=+[]{}|;:,.<>?";
 
-        input {
-            padding: 10px;
-            width: 80%;
-            margin: 10px;
-            font-size: 16px;
-        }
+    int charsetSize = sizeof(charset) - 1;  // Exclude null terminator
 
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: green;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    printf("Enter desired password length: ");
+    scanf("%d", &length);
 
-        button:hover {
-            background-color: darkgreen;
-        }
+    // Seed random number generator
+    srand(time(NULL));
 
-        #result {
-            margin-top: 15px;
-            font-weight: bold;
-            color: blue;
-        }
-    </style>
-</head>
-<body>
+    printf("Generated Password: ");
 
-<div class="container">
-    <h2>Password Generator</h2>
-
-    <input type="number" id="length" placeholder="Enter password length" min="4" max="50">
-
-    <br>
-    <button onclick="generatePassword()">Generate Password</button>
-    <div id="result"></div>
-</div>
-<script src="script.js"></script>
-</body>
-</html>
-
-javascript:
-function generatePassword() {
-
-    var length = document.getElementById("length").value;
-
-    if (length == "" || length < 4) {
-        alert("Please enter valid password length (min 4)");
-        return;
+    for(i = 0; i < length; i++) {
+        int index = rand() % charsetSize;
+        printf("%c", charset[index]);
     }
 
-    var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var lowercase = "abcdefghijklmnopqrstuvwxyz";
-    var numbers = "0123456789";
-    var symbols = "!@#$%^&*()_+";
+    printf("\n");
 
-    var allChars = uppercase + lowercase + numbers + symbols;
-
-    var password = "";
-
-    for (var i = 0; i < length; i++) {
-        var randomIndex = Math.floor(Math.random() * allChars.length);
-        password += allChars[randomIndex];
-    }
-
-    document.getElementById("result").innerHTML =
-        "Generated Password: " + password;
+    return 0;
 }
 
 5. Features
