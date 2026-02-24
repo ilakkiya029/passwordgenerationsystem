@@ -25,31 +25,107 @@ System helps users create secure passwords instantly without manual effort
 #include <stdlib.h>
 #include <time.h>
 
-int main() {
-    int length, i;
-    
-    // Character set: lowercase, uppercase, digits, special characters
-    char charset[] = "abcdefghijklmnopqrstuvwxyz"
-                     "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                     "0123456789"
-                     "!@#$%^&*()-_=+[]{}|;:,.<>?";
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-    int charsetSize = sizeof(charset) - 1;  // Exclude null terminator
+/* Function to generate password */
+void generatePassword(int length)
+{
+    /* Character set for password */
+    char upper[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char lower[] = "abcdefghijklmnopqrstuvwxyz";
+    char numbers[] = "0123456789";
+    char symbols[] = "!@#$%^&*";
 
-    printf("Enter desired password length: ");
-    scanf("%d", &length);
+    /* Combined character array */
+    char all[100];
 
-    // Seed random number generator
-    srand(time(NULL));
+    int i = 0;
+    int j = 0;
 
-    printf("Generated Password: ");
+    /* Copy uppercase letters */
+    while(upper[i] != '\0')
+    {
+        all[j] = upper[i];
+        i++;
+        j++;
+    }
 
-    for(i = 0; i < length; i++) {
-        int index = rand() % charsetSize;
-        printf("%c", charset[index]);
+    i = 0;
+
+    /* Copy lowercase letters */
+    while(lower[i] != '\0')
+    {
+        all[j] = lower[i];
+        i++;
+        j++;
+    }
+
+    i = 0;
+
+    /* Copy numbers */
+    while(numbers[i] != '\0')
+    {
+        all[j] = numbers[i];
+        i++;
+        j++;
+    }
+
+    i = 0;
+
+    /* Copy symbols */
+    while(symbols[i] != '\0')
+    {
+        all[j] = symbols[i];
+        i++;
+        j++;
+    }
+
+    int totalCharacters = j;
+
+    printf("\nGenerated Password: ");
+
+    /* Generate password using loop */
+    for(i = 0; i < length; i++)
+    {
+        int randomIndex;
+
+        randomIndex = rand() % totalCharacters;
+
+        printf("%c", all[randomIndex]);
     }
 
     printf("\n");
+}
+
+/* Main function */
+int main()
+{
+    int length;
+
+    /* Initialize random seed */
+    srand(time(0));
+
+    printf("====================================\n");
+    printf("     PASSWORD GENERATION SYSTEM     \n");
+    printf("====================================\n");
+
+    /* Get password length from user */
+    printf("Enter desired password length: ");
+    scanf("%d", &length);
+
+    /* Check valid length */
+    if(length <= 0)
+    {
+        printf("Invalid length. Please enter positive number.\n");
+    }
+    else
+    {
+        generatePassword(length);
+    }
+
+    printf("\nProgram Finished Successfully.\n");
 
     return 0;
 }
